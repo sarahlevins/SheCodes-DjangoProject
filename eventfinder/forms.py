@@ -14,3 +14,14 @@ class EventCreateForm(forms.ModelForm):
         'end_time',
         'venue', 
         'category',)
+
+class EventUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = (
+        'name', 
+        'description', 
+        'start_time',
+        'end_time',
+        'venue', 
+        'category',)

@@ -9,4 +9,6 @@
         <p>{{ user.last_name }}</p>
         <p>{{ user.email }}</p>
     </ul>
+
+<a href="{% url 'users:user-delete' user.pk%}">Delete my account</a>
 {% endblock %}

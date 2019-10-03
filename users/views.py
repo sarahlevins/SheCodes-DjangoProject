@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import authenticate
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import RegisterUserForm, UpdateUserForm
 from .models import User
@@ -24,6 +24,11 @@ class UserUpdate(UpdateView):
     def get_success_url(self):
         user_id = self.kwargs['pk']
         return reverse_lazy('users:user-detail', kwargs={'pk': user_id})
+
+class UserDelete(DeleteView):
+    model = User
+    template_name = 'registration/delete.html'
+    success_url = reverse_lazy('eventfinder:index')
 
 class Login(LoginView):
     pass
