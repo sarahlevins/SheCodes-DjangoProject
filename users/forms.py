@@ -11,7 +11,7 @@ class RegisterUserForm(UserCreationForm):
         'last_name',
         )
 
-class UserUpdateForm(UserChangeForm):
+class UpdateUserForm(UserChangeForm):
   class Meta:
       model = User
       fields = (
