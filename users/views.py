@@ -28,7 +28,7 @@ class UserUpdate(UpdateView):
 class UserDelete(DeleteView):
     model = User
     template_name = 'registration/delete.html'
-    success_url = reverse_lazy('eventfinder:index')
+    success_url = reverse_lazy('eventfinder:index')    
 
 class Login(LoginView):
     pass

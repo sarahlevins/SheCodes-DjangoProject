@@ -33,6 +33,11 @@ class EventDelete(DeleteView):
     template_name = 'eventfinder/event_delete.html'
     success_url = reverse_lazy('eventfinder:index')
 
+class Attending(UpdateView):
+    model = Event
+    template_name = 'eventfinder/attending.html'
+    fields = ['attendees']    
+
 class VenueDetail(DetailView):
     model = Venue
     context_object_name = 'venue'

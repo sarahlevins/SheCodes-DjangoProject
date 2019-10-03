@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+    
+<p> you are now attending an event {{ event.name }} </p>
+
+<form action="/eventfinder" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
