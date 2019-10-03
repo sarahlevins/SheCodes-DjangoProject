@@ -29,6 +29,11 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'users.User'
 
+LOGIN_REDIRECT_URL = '/freeeventfinder'
+
+LOGOUT_REDIRECT_URL = '/freeeventfinder'
+
+
 
 # Application definition
 

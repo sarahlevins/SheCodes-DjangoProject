@@ -12,6 +12,5 @@ class EventCreateForm(forms.ModelForm):
         'description', 
         'start_time',
         'end_time',
-        'host',
         'venue', 
         'category',)
