@@ -6,9 +6,11 @@
     <h2>{{ event.name }}</h2>
     <ul>
         <p>{{ event.description }}</p>
-        <p>{{ event.start_time }}</p>
-        <p>{{ event.end_time }}</p>
-        <p>Catgories:
+        <p>Starts: {{ event.start_time }}</p>
+        <p>Ends: {{ event.end_time }}</p>
+        <p>Venue: <a href="{% url 'eventfinder:venue-detail' event.venue.pk %}">{{ event.venue }}</a></p>
+        <p>Host: {{ event.host }}</p>
+        <p>Categories:
         <p>{% for category in event.category.all %}</p>
                 {{ category.name }}
             {% endfor %}
