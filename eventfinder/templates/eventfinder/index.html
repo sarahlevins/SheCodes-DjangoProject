@@ -1,0 +1,9 @@
+{% if upcoming_event_list %}
+    <ul>
+    {% for event in upcoming_event_list %}
+        <li>{{ event.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No events are available.</p>
+{% endif %}
