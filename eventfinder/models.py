@@ -5,6 +5,7 @@ class Event(models.Model):
     description = models.CharField(max_length=200)
     start_time = models.DateTimeField('start time and date')
     end_time = models.DateTimeField('end time and date')
+    category = models.ManyToManyField('Category', default='')
     # photo = 
     # venue = 
     # category = 
@@ -13,6 +14,12 @@ class Event(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse("eventfinder:event", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return self.name
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

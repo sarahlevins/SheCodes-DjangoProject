@@ -1,9 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Upcoming events</h2>
+
 {% if upcoming_event_list %}
     <ul>
     {% for event in upcoming_event_list %}
-        <li>{{ event.name }}</li>
+        <li><a href="{% url 'eventfinder:event-detail' event.pk %}">{{ event.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No events are available.</p>
 {% endif %}
+
+{% endblock %}

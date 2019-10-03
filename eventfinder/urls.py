@@ -6,4 +6,5 @@ app_name = 'eventfinder'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('<int:pk>/', views.EventDetail.as_view(), name='event-detail')
     ]

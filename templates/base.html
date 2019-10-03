@@ -1,0 +1,27 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>You're Not Too Poor</title>
+        <meta name="description" content="">
+        <meta name="author" content="Sarah Levins">
+
+    </head>
+
+    <body>
+        <header>
+            <div>
+                <h1>You're Not Too Poor.</h1>
+                <h2>No more excuses. Go out.</h2>
+            </div>
+        
+        {% include './nav.html' %}
+
+        </header>
+
+        {% block content %}{% endblock %}
+        
+    </body>
