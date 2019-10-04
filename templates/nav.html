@@ -1,15 +1,40 @@
 {% load static %}
 
-{% block content %}
-<p><a href="{% url 'eventfinder:index' %}">Home</a></p>
-<p><a href="{% url 'eventfinder:event-create' %}">Create New Event</a></p>
-{% if user.is_authenticated %}
-    <p>Hello {{ user.first_name }}! 
-        Click <a href="{% url 'users:user-detail' user.pk %}">here</a> to view your profile, or here to <a href="{% url 'users:logout' %}">logout</a>.</p>
-{% else %}
-    <p><a href="{% url 'users:login' %}">Login</a></p>
-    <p><a href="{% url 'users:user-create' %}">Register</a></p>
-{% endif %}
-
-
-{% endblock %}
+<nav class = "navbar bg-light">
+        <div id="navbar-wrapper">
+        <div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url 'eventfinder:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'eventfinder:index' %}">Search for Event</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+            
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle" type="button" id="MyAccountDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hi {{ user.username }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="MyAccountDropDown">
+                    <a class="dropdown-item" href="{% url 'users:user-detail' user.pk %}">My Account</a>
+                    <a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a>
+                </div>
+            </div>
+    
+            {% else %}
+            <ul class="nav">
+                <li class="nav-item">
+                        <a href="{% url 'users:login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                        <a href="{% url 'users:user-create' %}">Register</a>
+                </li>
+            </ul>
+            {% endif %}
+        </div>
+        </div>
+    </nav>

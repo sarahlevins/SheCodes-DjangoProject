@@ -8,12 +8,12 @@ from users.models import User
 from django.forms import formset_factory
 from rest_framework import viewsets
 from .serializers import EventSerializer
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 
 
 def index(request):
-    upcoming_event_list = Event.objects.order_by('-start_time')[:5]
-    context = {'upcoming_event_list': upcoming_event_list}
+    upcoming_events_list = Event.objects.order_by('-start_time')[:5]
+    context = {'upcoming_events_list': upcoming_events_list}
     return render(request, 'eventfinder/index.html', context)
 
 class EventDetail(DetailView):
@@ -22,7 +22,7 @@ class EventDetail(DetailView):
 
 def attending(self, pk):
     event = Event.objects.get(pk=pk)
-    user = User.objects.get(pk=1)
+    user = User.objects.get(self.request.user)
     event.attendees.add(user)
     return HttpResponseRedirect('/freeeventfinder/')
 

@@ -2,18 +2,29 @@
 
 {% block content %}
 
-<h2>Upcoming events</h2>
-
-{{ event_attending.user.all }}
-
-{% if upcoming_event_list %}
-    <ul>
-    {% for event in upcoming_event_list %}
-        <li><a href="{% url 'eventfinder:event-detail' event.pk %}">{{ event.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No events are available.</p>
-{% endif %}
+    <div id="index-container" class="row">
+        <div class="col-6">
+            {% if upcoming_events_list %}
+                {% for event in upcoming_events_list %}
+                    {% include "./event_listing_box.html" with event=event %}
+                {% endfor %}
+            {% else %}
+                <p>No events are available.</p>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            <div id="right-side-row" class="row">
+                <div id="new-event-col" class="col right-side-col">
+                    <a href="{% url 'eventfinder:event-create' %}"><button id="new-event">CREATE NEW EVENT</button></a>
+                </div>
+                <div id="featured-col" class="col right-side-col">
+                    <h2>featured events and reviews coming soon</h2>
+                </div>
+                <div id="frugal-col" class="col right-side-col">
+                    <h2>frugal blog coming soon</h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

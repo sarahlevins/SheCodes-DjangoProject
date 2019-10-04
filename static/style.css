@@ -1,0 +1,143 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@sarahlevins 
+Code  Issues 0  Pull requests 0  Projects 0  Wiki  Security  Pulse  Community
+FreeEventFinder/static/style.css
+@sarahlevins sarahlevins got edit event to work
+c3e668c 15 days ago
+116 lines (95 sloc)  1.63 KB
+    
+html {
+
+}
+
+body {
+    margin: 50px;
+    font-family: 'Cinzel', sans-serif;
+}
+
+h1 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 4rem;
+    color: #2b6e5e;
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Bangers', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+}
+
+header {
+    border-bottom: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.dropdown-toggle .dropdown-item{
+    font-size: 1.7rem;
+}
+
+.nav {
+    margin: 0 10px;
+    font-size: 1.7rem;
+}
+.nav-item{
+    font-size: 1.7rem;
+}
+
+a {
+    color: #2b6e5e;
+    font-family: 'Cinzel', sans-serif;
+
+}
+
+#navbar-wrapper{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+#new-event {
+    width: 100%;
+    background-color: #2b6e5e;
+    color: #fff;
+    font-family: 'Bangers', sans-serif;
+    border: 1px solid #2b6e5e;
+    border-radius: 2px;
+    font-size: 3rem;
+    height: 100px;
+    cursor: pointer;
+}
+
+#new-event:hover {
+    background-color: #26574b;
+}
+
+.details-box {
+    border: 1px solid #2b6e5e;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.details-box a {
+    color: #000 !important;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.details-box a:hover {
+    text-decoration: underline;
+}
+
+#right-side-row{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    flex-direction: column;
+}
+
+.right-side-col{
+    max-width: 100%;
+    border: 1px solid #2b6e5e;
+    border-radius: 4px;
+    margin: 10px 0; */
+}
+
+#new-event-col{
+    flex-grow: 0; 
+    padding: 0px;
+}
+
+#featured-col{
+    flex-grow: 2;
+    text-align: center;
+    padding: 5px 0;
+}
+
+#frugal-col{
+    flex-grow: 2;
+    text-align: center;
+    padding: 5px 0;
+}
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
