@@ -3,7 +3,7 @@
         <p>{{ event.name }}</p>
         <p>{{ event.start_time }}</p>
         {% for category in event.category.all %}
-            {{ category.name }}
+        <p>{{ category.name }}</p>
         {% endfor %}
     </a>
 </div>

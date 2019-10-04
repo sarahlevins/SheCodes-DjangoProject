@@ -13,7 +13,8 @@ from django.http import HttpResponseRedirect, request
 
 def index(request):
     upcoming_events_list = Event.objects.order_by('-start_time')[:5]
-    context = {'upcoming_events_list': upcoming_events_list}
+    latest_event = Event.objects.order_by('-created_date')[:1]
+    context = {'upcoming_events_list': upcoming_events_list, 'latest_event':latest_event}
     return render(request, 'eventfinder/index.html', context)
 
 class EventDetail(DetailView):

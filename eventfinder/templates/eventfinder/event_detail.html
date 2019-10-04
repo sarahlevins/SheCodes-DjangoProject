@@ -29,7 +29,6 @@
 
     <form action="{% url 'eventfinder:attending' event.id %}" method="post">
         {% csrf_token %}
-        
         <input type="submit" value="RSVP">
     </form>
 

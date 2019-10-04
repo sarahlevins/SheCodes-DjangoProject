@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% load static %}
 
@@ -9,6 +10,8 @@
         {{ eventform.media }}
         {% csrf_token %}
         {{ form.as_p }}
+        <button type="submit" value="Update" class="save btn btn-default">Create Event</button>
+
      </form>
 
 {% endblock %}

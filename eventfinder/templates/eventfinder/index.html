@@ -3,7 +3,8 @@
 {% block content %}
 
     <div id="index-container" class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
+            <h2 class="text-center">Upcoming Events</h2>
             {% if upcoming_events_list %}
                 {% for event in upcoming_events_list %}
                     {% include "./event_listing_box.html" with event=event %}
@@ -12,16 +13,16 @@
                 <p>No events are available.</p>
             {% endif %}
         </div>
-        <div class="col-6">
-            <div id="right-side-row" class="row">
+        <div class="col-lg-6">
+            <div id="right-side-row" class="row mx-0">
                 <div id="new-event-col" class="col right-side-col">
                     <a href="{% url 'eventfinder:event-create' %}"><button id="new-event">CREATE NEW EVENT</button></a>
                 </div>
                 <div id="featured-col" class="col right-side-col">
-                    <h2>featured events and reviews coming soon</h2>
-                </div>
-                <div id="frugal-col" class="col right-side-col">
-                    <h2>frugal blog coming soon</h2>
+                <h2 class="text-center">Lastest Event</h2>
+                {% for event in latest_event %}
+                    {% include "./event_latest.html" with event=event %}
+                {% endfor %}
                 </div>
             </div>
         </div>
