@@ -5,7 +5,9 @@
 {% block content %}
     <h1>Update {{ event.name }}</h1>
 
-    <form enctype="multipart/form-data" method="post">{% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+        {{ eventform.media }}
+        {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
      </form>

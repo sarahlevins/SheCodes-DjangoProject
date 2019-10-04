@@ -5,7 +5,9 @@
 {% block content %}
     <h1>come here to update your details</h1>
 
-    <form method="post">{% csrf_token %}
+    <form method="post" enctype="multipart/form-data">
+        {{ userform.media }}
+        {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
      </form>

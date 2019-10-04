@@ -4,6 +4,13 @@
 
 {% block content %}
     <h2>{{ event.name }}</h2>
+
+    {% if event.photo %}
+    <p><img src="{{ event.photo.url }}"></p>
+    {% else %}
+    <p>This event has no photo</p>
+    {% endif %}
+
     <ul>
         <p>{{ event.description }}</p>
         <p>Starts: {{ event.start_time }}</p>
@@ -19,5 +26,12 @@
         <a href="{% url 'eventfinder:event-update' event.pk%}">Update my event</a>
         <a href="{% url 'eventfinder:event-delete' event.pk%}">Delete my event</a>
     {% endif %}
+
+    <form action="{% url 'eventfinder:attending' event.id %}" method="post">
+        {% csrf_token %}
+        
+        <input type="submit" value="RSVP">
+    </form>
+
 
 {% endblock %}

@@ -8,6 +8,7 @@ from users.models import User
 from django.forms import formset_factory
 from rest_framework import viewsets
 from .serializers import EventSerializer
+from django.http import HttpResponseRedirect
 
 
 def index(request):
@@ -19,18 +20,11 @@ class EventDetail(DetailView):
     model = Event
     context_object_name = 'event'
 
-    def user_attending (request, user_id):
-        attendee = User.objects.get(pk=user_id)
-        EventInlineFormSete = inlineformset_factory(User, Event, fields=('attendees',))
-
-        if request.method == "POST":
-            formset = EventInlineFormSet(request.POST, request.FILES, instance=user)
-        if formset.is_valid():
-            formset.save()
-            return HttpResponseRedirect(event.get_absolute_url())
-        else:
-            formset = EventInlineFormSet(instance=user)
-            return render(request, 'attending.html', {'formset': formset})
+def attending(self, pk):
+    event = Event.objects.get(pk=pk)
+    user = User.objects.get(pk=1)
+    event.attendees.add(user)
+    return HttpResponseRedirect('/freeeventfinder/')
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
@@ -55,11 +49,6 @@ class EventDelete(DeleteView):
     model = Event
     template_name = 'eventfinder/event_delete.html'
     success_url = reverse_lazy('eventfinder:index')
-
-class Attending(UpdateView):
-    model = Event
-    template_name = 'eventfinder/attending.html'
-    fields = ['attendees']    
 
 class VenueDetail(DetailView):
     model = Venue
