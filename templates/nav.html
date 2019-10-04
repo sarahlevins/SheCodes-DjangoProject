@@ -2,8 +2,10 @@
 
 {% block content %}
 <p><a href="{% url 'eventfinder:index' %}">Home</a></p>
+<p><a href="{% url 'eventfinder:event-create' %}">Create New Event</a></p>
 {% if user.is_authenticated %}
-    <p>Hello {{ user.first_name }}! Click here to view your profile, or here to <a href="{% url 'users:logout' %}">logout</a>.</p>
+    <p>Hello {{ user.first_name }}! 
+        Click <a href="{% url 'users:user-detail' user.pk %}">here</a> to view your profile, or here to <a href="{% url 'users:logout' %}">logout</a>.</p>
 {% else %}
     <p><a href="{% url 'users:login' %}">Login</a></p>
     <p><a href="{% url 'users:user-create' %}">Register</a></p>

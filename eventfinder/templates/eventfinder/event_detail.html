@@ -15,7 +15,9 @@
                 {{ category.name }}
             {% endfor %}
     </ul>
-    <a href="{% url 'eventfinder:event-update' event.pk%}">Update my event</a>
-    <a href="{% url 'eventfinder:event-delete' event.pk%}">Delete my event</a>
+    {% if user.username == event.host.username %}
+        <a href="{% url 'eventfinder:event-update' event.pk%}">Update my event</a>
+        <a href="{% url 'eventfinder:event-delete' event.pk%}">Delete my event</a>
+    {% endif %}
 
 {% endblock %}

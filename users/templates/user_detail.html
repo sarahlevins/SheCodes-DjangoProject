@@ -3,12 +3,15 @@
 {% load static %}
 
 {% block content %}
-    <h2>{{ user.username }}</h2>
+    <h2>{{ usersdetail.username }}</h2>
     <ul>
-        <p>{{ user.first_name }}</p>
-        <p>{{ user.last_name }}</p>
-        <p>{{ user.email }}</p>
+        <p>{{ usersdetail.first_name }}</p>
+        {% if usersdetail.username == user.username %}
+            <p>{{ usersdetail.last_name }}</p>
+            <p>{{ usersdetail.email }}</p>
+            <p><a href="{% url 'users:user-update' user.pk%}">Update my account</a></p>
+            <p><a href="{% url 'users:user-delete' user.pk%}">Delete my account</a></p>
+        {% endif %}
     </ul>
 
-<a href="{% url 'users:user-delete' user.pk%}">Delete my account</a>
 {% endblock %}
