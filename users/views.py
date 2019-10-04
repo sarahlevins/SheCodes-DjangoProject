@@ -3,8 +3,11 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import authenticate
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .forms import RegisterUserForm, UpdateUserForm
 from .models import User
+from .serializers import UserSerializer
 
 class Register(CreateView):
     form_class = RegisterUserForm
@@ -39,3 +42,12 @@ class Login(LoginView):
 
 class Logout(LogoutView):
     pass
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(pk=user.id)

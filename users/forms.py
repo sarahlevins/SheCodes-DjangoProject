@@ -9,6 +9,7 @@ class RegisterUserForm(UserCreationForm):
         'email',
         'first_name',
         'last_name',
+        'user_photo',
         )
 
 class UpdateUserForm(UserChangeForm):
@@ -19,4 +20,5 @@ class UpdateUserForm(UserChangeForm):
         'email',
         'first_name',
         'last_name',
+        'user_photo',
         )

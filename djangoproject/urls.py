@@ -14,11 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import include, path
+from rest_framework import routers
+from rest_framework.authtoken import views
+from eventfinder import views as eventviews
+from users import views as userviews
+
+router = routers.DefaultRouter()
+router.register(r'events', eventviews.EventViewSet)
+router.register(r'users', userviews.UserViewSet)
 
 urlpatterns = [
     path('freeeventfinder/', include('eventfinder.urls')),
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-
-]
+    path('api/', include(router.urls)),
+    path(r'api-auth-token/', views.obtain_auth_token),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

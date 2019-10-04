@@ -6,6 +6,8 @@ from .models import Event, Venue, Category
 from .forms import EventCreateForm, EventUpdateForm
 from users.models import User
 from django.forms import formset_factory
+from rest_framework import viewsets
+from .serializers import EventSerializer
 
 
 def index(request):
@@ -62,3 +64,7 @@ class Attending(UpdateView):
 class VenueDetail(DetailView):
     model = Venue
     context_object_name = 'venue'
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer

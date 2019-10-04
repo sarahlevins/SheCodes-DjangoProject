@@ -13,7 +13,9 @@ class EventCreateForm(forms.ModelForm):
         'start_time',
         'end_time',
         'venue', 
-        'category',)
+        'category',
+        'photo',
+        )
 
 class EventUpdateForm(forms.ModelForm):
     class Meta:
@@ -24,4 +26,6 @@ class EventUpdateForm(forms.ModelForm):
         'start_time',
         'end_time',
         'venue', 
-        'category',)
+        'category',
+        'photo',
+        )

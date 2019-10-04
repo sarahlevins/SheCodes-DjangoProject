@@ -5,6 +5,11 @@
 {% block content %}
     <h2>{{ usersdetail.username }}</h2>
     <ul>
+        {% if usersdetail.user_photo %}
+            <p><img src="{{ usersdetail.user_photo.url }}"></p>
+        {% else %}
+            <p>This profile has no photo</p>
+        {% endif %}
         <p>{{ usersdetail.first_name }}</p>
         {% if usersdetail.username == user.username %}
             <p>{{ usersdetail.last_name }}</p>

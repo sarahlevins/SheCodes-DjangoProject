@@ -14,7 +14,8 @@ class Event(models.Model):
     host = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, default='')
     venue = models.ForeignKey('Venue', on_delete=models.DO_NOTHING, default='')
     attendees = models.ManyToManyField(User, related_name='attendees', symmetrical=False, default='')
-    # photo = 
+    created_date = models.DateTimeField(auto_now_add=True)
+    photo = models.ImageField(upload_to ='event_photos', blank=True)
 
     def get_absolute_url(self):
         return reverse("eventfinder:event-detail", kwargs={"pk": self.pk})
@@ -31,6 +32,7 @@ class Category(models.Model):
 class Venue(models.Model):
     name = models.CharField(max_length=50)
     venue_website = models.URLField(max_length=100, default='')
+    venue_photo = models.ImageField(upload_to='venue_photos', blank=True)
        
     def __str__(self):
         return self.name
