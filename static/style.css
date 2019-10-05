@@ -23,6 +23,16 @@ body {
     font-family: 'Cinzel', sans-serif;
 }
 
+a {
+    color: #2b6e5e;
+    font-family: 'Cinzel', sans-serif;
+}
+
+a:hover {
+    color: black;
+    backgroud: yellow;
+}
+
 h1 {
     font-family: 'Bangers', sans-serif;
     font-size: 4rem;
@@ -52,14 +62,6 @@ header {
 .nav-item{
     font-size: 1.7rem;
 }
-
-a {
-    color: #2b6e5e;
-    font-family: 'Cinzel', sans-serif;
-
-}
-
-
 
 #navbar-wrapper{
     display: flex;
@@ -128,16 +130,6 @@ a {
 
 #featured-box{
     border: 0px
-    /* border-radius: 4px;
-    margin: 10px 0;
-    padding: 10px; */
-}
-
-#RSVP-now-link{
-    font-family: 'Bangers', sans-serif;
-    font-size: 3rem;
-    margin: 0;
-    color: #2b6e5e;
 }
 
 © 2019 GitHub, Inc.
