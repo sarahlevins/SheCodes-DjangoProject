@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  
+  <form method="GET">
+    {{ form.media }}
+    {{ filter.form|crispy }}
+    <button type="submit">Search for Event</button>
+  </form>
+
+  <ul>
+  {% for event in filter.qs %}
+    <li><a href="{% url 'eventfinder:event' event.pk %}">{{ event.name }}</a></li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}
