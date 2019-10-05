@@ -27,16 +27,16 @@ SECRET_KEY = 'gg*72^keeksus6jmmn%ph$4@wb-*%wkr(+-#oiw(r^)8(cb$$r'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-if 'BEANSTALK_HOST' in os.environ:
-    ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
+    if 'BEANSTALK_HOST' in os.environ:
+        ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
 
-try:
-    # Be sure your ALLOWED_HOSTS is a list NOT a tuple
-    # or .append() will fail
-    ALLOWED_HOSTS.append(socket.gethostbyname(socket.gethostname()))
-except:
-    # silently fail as we may not be in an ECS environment
-    pass
+    try:
+        # Be sure your ALLOWED_HOSTS is a list NOT a tuple
+        # or .append() will fail
+        ALLOWED_HOSTS.append(socket.gethostbyname(socket.gethostname()))
+    except:
+        # silently fail as we may not be in an ECS environment
+        pass
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -150,14 +150,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
-if 'S3_BUCKET' in os.environ:
-    # setup AWS S3 as the storage for static and media
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    if 'S3_BUCKET' in os.environ:
+        # setup AWS S3 as the storage for static and media
+        DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+        STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    # define the AWS S3 bucket to use for storage
-    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
-    AWS_DEFAULT_ACL = 'public-read'
+        # define the AWS S3 bucket to use for storage
+        AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
+        AWS_DEFAULT_ACL = 'public-read'
 
 MEDIA_URL = '/media/'
 
