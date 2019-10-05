@@ -27,8 +27,8 @@ SECRET_KEY = 'gg*72^keeksus6jmmn%ph$4@wb-*%wkr(+-#oiw(r^)8(cb$$r'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-    if 'BEANSTALK_HOST' in os.environ:
-        ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
+if 'BEANSTALK_HOST' in os.environ:
+    ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
 
     try:
         # Be sure your ALLOWED_HOSTS is a list NOT a tuple
