@@ -1,40 +1,42 @@
 {% load static %}
 
-<nav class = "navbar bg-light">
-        <div id="navbar-wrapper">
-        <div>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a href="{% url 'eventfinder:index' %}">Home</a>
-                </li>
-                <li>
-                    <a href="{% url 'eventfinder:event-filter' %}">Search for Event</a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            {% if user.is_authenticated %}
-            
-            <div class="nav-item dropdown">
-                <button class="btn dropdown-toggle" type="button" id="MyAccountDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hi {{ user.username }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="MyAccountDropDown">
-                    <a class="dropdown-item" href="{% url 'users:user-detail' user.pk %}">My Account</a>
-                    <a class="dropdown-item" href="{% url 'users:logout' %}">Logout</a>
-                </div>
-            </div>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="text-center">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>  
     
-            {% else %}
-            <ul class="nav">
-                <li class="nav-item">
-                        <a href="{% url 'users:login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                        <a href="{% url 'users:user-create' %}">Register</a>
-                </li>
-            </ul>
-            {% endif %}
-        </div>
-        </div>
-    </nav>
+    <div class="collapse navbar-collapse" id="navigation-toggle">          
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'eventfinder:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'eventfinder:event-filter' %}">Search for Event</a>
+            </li>
+        </ul>
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav mr-0">    
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi {{ user.username }}</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown">
+                <a class="dropdown-item nav-item" href="{% url 'users:user-detail' user.pk %}">My Account</a>
+                <a class="dropdown-item nav-item" href="{% url 'users:logout' %}">Logout</a>
+                </div>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav mr-0">
+            <li class="nav-item">
+                    <a href="{% url 'users:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                    <a href="{% url 'users:user-create' %}">Register</a>
+            </li>
+        </ul>
+        {% endif %}
+    </div>
+</nav>
+  
