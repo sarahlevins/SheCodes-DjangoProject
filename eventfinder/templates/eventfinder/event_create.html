@@ -9,7 +9,7 @@
     <form method="post" enctype="multipart/form-data">
         {{ eventform.media }}
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_p |as_crispy_field }}
         <button type="submit" value="Update" class="save btn btn-default">Create Event</button>
 
      </form>

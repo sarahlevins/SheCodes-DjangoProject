@@ -13,13 +13,14 @@
                 <p>No events are available.</p>
             {% endif %}
         </div>
+        
         <div class="col-lg-6">
             <div id="right-side-row" class="row mx-0">
                 <div id="new-event-col" class="col right-side-col">
-                    <a href="{% url 'eventfinder:event-create' %}"><button id="new-event">CREATE NEW EVENT</button></a>
+                    <a href="{% url 'eventfinder:event-create' %}"><button id="new-event"><h2>CREATE NEW EVENT</h2></button></a>
                 </div>
                 <div id="featured-col" class="col right-side-col">
-                <h2 class="text-center">Lastest Event</h2>
+                <h2>Lastest Event</h2>
                 {% for event in latest_event %}
                     {% include "./event_latest.html" with event=event %}
                 {% endfor %}
