@@ -172,7 +172,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 # if 'S3_BUCKET' in os.environ:
 #     # setup AWS S3 as the storage for static and media
 #     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
