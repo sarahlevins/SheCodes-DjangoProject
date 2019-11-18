@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load widget_tweaks %} {% block content %}
+
+<form method="get">
+  <div class="well">
+    <h4 style="margin-top: 0">Event Search</h4>
+    <div class="row">
+      <div class="form group col-sm-4 col-md-3">
+        <p>Name</p>
+        {% render_field filter.form.name class="form-control" %}
+      </div>
+      <div class="form group col-sm-4 col-md-3">
+        <p>Venue</p>
+        {% render_field filter.form.venue class="form-control" %}
+      </div>
+      <div class="form group col-sm-4 col-md-3">
+        <p>Categories</p>
+        <div>
+          {% for choice in filter.form.category %}
+          <label class="checkbox-inline"
+            >{{ choice.tag }} {{ choice.choice_label }}</label
+          >
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <button type="Submit">Find me something free</button>
+</form>
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Event Title</th>
+      <th>Venue</th>
+      <th>Categories</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for event in filter.qs %}
+    <tr>
+      <td>{{ event.name }}</td>
+      <td>{{ event.venue }}</td>
+      <td>
+        {% for category in event.category.all %} {{ category.name }} {% empty %}
+        <em class="text-muted">No group</em>
+        {% endfor %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">No Event Matches</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -8,6 +8,10 @@ from users.models import User
 from django.forms import formset_factory
 from rest_framework import viewsets
 from .serializers import EventSerializer
+from .filters import EventFilter
+from django_filters.views import FilterView
+
+
 from django.http import HttpResponseRedirect, request
 
 
@@ -51,6 +55,14 @@ class EventDelete(DeleteView):
     template_name = 'eventfinder/event_delete.html'
     success_url = reverse_lazy('eventfinder:index')
 
+def event_filter(request):
+    f = EventFilter(request.GET, queryset = Event.objects.all())
+    return render(request, 'eventfinder/event_filter.html', {'filter': f})
+
+# class EventFilter(ListView):
+#     template_name = 'eventfinder/event_filter.html'
+#     queryset = Event.objects.all()
+
 class VenueDetail(DetailView):
     model = Venue
     context_object_name = 'venue'
@@ -58,3 +70,4 @@ class VenueDetail(DetailView):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+

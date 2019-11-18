@@ -24,26 +24,25 @@ body {
 }
 
 a {
-    color: #2b6e5e;
-    font-family: 'Cinzel', sans-serif;
+    color: #2b6e5e !important;
 }
 
 a:hover {
-    color: black;
-    backgroud: yellow;
+    color: #26574b !important;
+}
+
+h1, h2, h3 {
+    font-family: 'Bangers', sans-serif;
+    margin: 0;
 }
 
 h1 {
-    font-family: 'Bangers', sans-serif;
     font-size: 4rem;
     color: #2b6e5e;
-    margin: 0;
 }
 
 h2 {
-    font-family: 'Bangers', sans-serif;
     font-size: 3rem;
-    margin: 0;
 }
 
 header {
@@ -51,16 +50,21 @@ header {
     margin-bottom: 20px;
 }
 
-.dropdown-toggle .dropdown-item{
-    font-size: 1.7rem;
+img {
+    border: #2b6e5e solid 3px;
+    border-radius: 4px;
 }
 
+/******* nav bar *********/
+
 .nav {
-    margin: 0 10px;
-    font-size: 1.7rem;
+    align-content: center;
 }
 .nav-item{
-    font-size: 1.7rem;
+    font-size: 1.2rem !important;
+    margin-right: 10px !important;
+    color: #2b6e5e !important;
+    font-family: 'Cinzel', sans-serif !important;
 }
 
 #navbar-wrapper{
@@ -69,21 +73,16 @@ header {
     justify-content: space-between;
 }
 
-#new-event {
-    width: 100%;
-    background-color: #2b6e5e;
-    color: #fff;
-    font-family: 'Bangers', sans-serif;
-    border: 1px solid #2b6e5e;
-    border-radius: 2px;
-    font-size: 3rem;
-    height: 100px;
-    cursor: pointer;
+#nav-left{
+    display: flex;
+    flex-grow: 1;
 }
 
-#new-event:hover {
-    background-color: #26574b;
+.dropdown-toggle .dropdown-item{
+    font-size: 1.7rem;
 }
+
+/**** event list *****/
 
 .details-box {
     border: 1px solid #2b6e5e;
@@ -117,19 +116,33 @@ header {
     margin: 10px 0; */
 }
 
+/**** create new event button ****/
+
 #new-event-col{
     flex-grow: 0; 
     padding: 0px;
 }
 
+#new-event {
+    width: 100%;
+    background-color: #2b6e5e;
+    color: #fff;
+    border: 1px solid #2b6e5e;
+    border-radius: 2px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#new-event:hover {
+    background-color: #26574b;
+}
+
+/**** featured event box ****/
+
 #featured-col{
     flex-grow: 2;
     text-align: center;
     padding: 5px 0;
-}
-
-#featured-box{
-    border: 0px
 }
 
 © 2019 GitHub, Inc.
