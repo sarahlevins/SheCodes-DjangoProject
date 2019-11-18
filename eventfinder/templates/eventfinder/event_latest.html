@@ -1,13 +1,17 @@
 <div id="featured-box">
-    <div class='row'>
-        <div class='col-lg-6'>
-                <p>Name: {{ event.name }}</p>
-                <p>When: {{ event.start_time }}</p>
-                <p>What: {{ event.description }}</p>
-            <h2><a href="{% url 'eventfinder:event-detail' event.id %}">rsvp now!</a></h2>
-        </div>
-        <div class='col-lg-6'>
-            <img class="img-fluid" src="{{ event.photo.url }}">
-        </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <p>Name: {{ event.name }}</p>
+      <p>When: {{ event.start_time }}</p>
+      <p>What: {{ event.description }}</p>
+      <h2>
+        <a href="{% url 'eventfinder:event-detail' event.id %}">rsvp now!</a>
+      </h2>
     </div>
+    <div class="col-lg-6">
+      {% if event.photo %}
+      <img class="img-fluid" src="{{ event.photo.url }}" />
+      {% else %} {{ blank }} {% endif %}
+    </div>
+  </div>
 </div>
