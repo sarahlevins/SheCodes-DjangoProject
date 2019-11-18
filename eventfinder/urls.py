@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required, permission_required
 from . import views
 from .models import Event
@@ -13,6 +14,6 @@ urlpatterns = [
     path('<int:pk>/event_delete/', views.EventDelete.as_view(), name='event-delete'),
     path('<int:pk>/attending/', views.attending, name='attending'),
     path('venue_detail/<int:pk>', views.VenueDetail.as_view(), name='venue-detail'),
-    path('event_filter', views.EventFilter.as_view(model=Event), name='event-filter'),
+    path(r'^filter/$', views.event_filter, name='event-filter'),
 
     ]
