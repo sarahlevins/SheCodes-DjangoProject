@@ -1,53 +1,50 @@
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth import authenticate
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticated
-from .forms import RegisterUserForm, UpdateUserForm
-from .models import User
-from .serializers import UserSerializer
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.views.generic.base import TemplateView
+from users.forms import CustomUserCreationForm, ProfileForm
+from django.contrib.auth.decorators import login_required
 
-class Register(CreateView):
-    form_class = RegisterUserForm
-    template_name = 'registration/register.html'
-    success_url = reverse_lazy('eventfinder:index')
 
-class UserDetail(DetailView):
-    model = User
-    template_name = 'user_detail.html'
-    context_object_name = 'usersdetail'
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('users:register_success')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registration/register.html', {
+        'form': form
+    })
 
-class UserUpdate(UpdateView):
-    model = User
-    form_class = UpdateUserForm
-    template_name = 'user_update.html'
 
-    def get_success_url(self):
-        user_id = self.kwargs['pk']
-        return reverse_lazy('users:user-detail', kwargs={'pk': user_id})
+class RegisterSuccessView(TemplateView):
+    template_name = "registration/register_success.html"
 
-    def get_object(self):
-        user_id = self.kwargs.get('pk')
-        return get_object_or_404(User, pk=user_id, username=self.request.user)
 
-class UserDelete(DeleteView):
-    model = User
-    template_name = 'registration/delete.html'
-    success_url = reverse_lazy('eventfinder:index')    
-
-class Login(LoginView):
-    pass
-
-class Logout(LogoutView):
-    pass
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
-
-    def get_queryset(self):
-        user = self.request.user
-        return User.objects.filter(pk=user.id)
+@login_required
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = CustomUserCreationForm(request.POST, instance=request.user)
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request,
+                             'Your profile was successfully updated!')
+            return redirect('eventfinder:index')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = CustomUserCreationForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'update_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })

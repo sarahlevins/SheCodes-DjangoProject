@@ -20,11 +20,9 @@ from django.urls import include, path
 from rest_framework import routers
 from rest_framework.authtoken import views
 from eventfinder import views as eventviews
-from users import views as userviews
 
 router = routers.DefaultRouter()
 router.register(r'events', eventviews.EventViewSet)
-router.register(r'users', userviews.UserViewSet)
 
 urlpatterns = [
     path('freeeventfinder/', include('eventfinder.urls')),

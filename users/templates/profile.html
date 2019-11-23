@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2>{{ user.username }}</h2>
+<ul>
+    {% if profile.profile_photo %}
+    <p><img src="{{ profile.profile_photo.url }}"></p>
+    {% else %}
+    <p>This profile has no photo</p>
+    {% endif %}
+    <p>{{ user.first_name }}</p>
+    {% if user.username == user.username %}
+    <p>{{ user.last_name }}</p>
+    <p>{{ user.email }}</p>
+    {% endif %}
+</ul>
+
+{% endblock %}

@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Event, Venue, Category
 from .forms import EventCreateForm, EventUpdateForm
-from users.models import User
+from django.contrib.auth.models import User
 from django.forms import formset_factory
 from rest_framework import viewsets
 from .serializers import EventSerializer

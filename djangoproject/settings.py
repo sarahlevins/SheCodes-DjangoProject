@@ -27,7 +27,8 @@ SECRET_KEY = 'gg*72^keeksus6jmmn%ph$4@wb-*%wkr(+-#oiw(r^)8(cb$$r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'morning-headland-11937.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
+                 'morning-headland-11937.herokuapp.com']
 if 'BEANSTALK_HOST' in os.environ:
     ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
 
@@ -39,12 +40,11 @@ if 'BEANSTALK_HOST' in os.environ:
         # silently fail as we may not be in an ECS environment
         pass
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'django.contrib.auth.models.User'
 
 LOGIN_REDIRECT_URL = '/freeeventfinder'
 
 LOGOUT_REDIRECT_URL = '/freeeventfinder'
-
 
 
 # Application definition
@@ -104,15 +104,15 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-  "default": {
-    "ENGINE": "django.db.backends.postgresql_psycopg2",
-    "NAME": "eventfinder",
-    "USER": "sarahlevins",
-    "PASSWORD": "",
-    "HOST": "localhost",
-    "PORT": "5432",
-    
-  }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "eventfinder",
+        "USER": "sarahlevins",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "5432",
+
+    }
 }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
@@ -130,7 +130,6 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
-
 
 
 # Password validation
