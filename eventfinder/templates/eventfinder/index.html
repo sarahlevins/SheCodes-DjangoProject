@@ -2,31 +2,39 @@
 
 {% block content %}
 
-    <div id="index-container" class="row">
-        <div class="col-lg-6">
-            <h2 class="text-center">Upcoming Events</h2>
-            {% if upcoming_events_list %}
-                {% for event in upcoming_events_list %}
-                    {% include "./event_listing_box.html" with event=event %}
-                {% endfor %}
-            {% else %}
-                <p>No events are available.</p>
-            {% endif %}
-        </div>
-        
-        <div class="col-lg-6">
-            <div id="right-side-row" class="row mx-0">
-                <div id="new-event-col" class="col right-side-col">
-                    <a href="{% url 'eventfinder:event-create' %}"><button id="new-event"><h2>CREATE NEW EVENT</h2></button></a>
-                </div>
-                <div id="featured-col" class="col right-side-col">
+<div id="index-container" class="row">
+    <div class="col-lg-6">
+        <h2 class="text-center">Upcoming Events</h2>
+        {% if upcoming_events_list %}
+        {% for event in upcoming_events_list %}
+        {% include "./event_listing_box.html" with event=event %}
+        {% endfor %}
+        {% else %}
+        <p>No events are available.</p>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-6">
+        <div id="right-side-row" class="row mx-0">
+            <div id="new-event-col" class="col right-side-col">
+                {% if user.is_authenticated %}
+                <a href="{% url 'eventfinder:event-create' %}"><button id="new-event">
+                        <h2>CREATE NEW EVENT</h2>
+                    </button></a>
+                {% else %}
+                <a href="{% url 'users:login' %}"><button id="new-event">
+                        <h2>CREATE NEW EVENT</h2>
+                    </button></a>
+                {% endif %}
+            </div>
+            <div id="featured-col" class="col right-side-col">
                 <h2>Lastest Event</h2>
                 {% for event in latest_event %}
-                    {% include "./event_latest.html" with event=event %}
+                {% include "./event_latest.html" with event=event %}
                 {% endfor %}
-                </div>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}
