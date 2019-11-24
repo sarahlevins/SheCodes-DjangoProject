@@ -18,7 +18,7 @@ SECRET_KEY = 'gg*72^keeksus6jmmn%ph$4@wb-*%wkr(+-#oiw(r^)8(cb$$r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
-                 'eventtwo.herokuapp.com']
+                 'eventtwo.herokuapp.com', 'https://morning-headland-11937.herokuapp.com/']
 if 'BEANSTALK_HOST' in os.environ:
     ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
     try:
