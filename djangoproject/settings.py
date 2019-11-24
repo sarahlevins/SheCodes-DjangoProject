@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'crispy_forms',
+    'storages',
     'widget_tweaks',
     'whitenoise.runserver_nostatic',
 ]
