@@ -1,15 +1,41 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% load static %}
 
 {% block content %}
-    <h1>Update {{ event.name }}</h1>
-
+<h1>Update {{ event.name }}</h1>
+<div class="row"></div>
+<div class="col-lg-5">
     <form method="post" enctype="multipart/form-data">
         {{ eventform.media }}
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <input type="submit" value="Save">
-     </form>
+    </form>
+</div>
+</div>
+{% endblock %}
 
+
+{% block page_css %}
+<link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css" />
+{% endblock %}
+
+{% block page_js %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+<script
+    src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#id_time').datetimepicker({
+            format: 'MM/DD/YYYY HH:mm',
+            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            sideBySide: true
+        });
+    });
+</script>
 {% endblock %}

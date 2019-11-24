@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'crispy_forms',
+    'django_forms_bootstrap',
+    'bootstrap3',
     'widget_tweaks',
     'whitenoise.runserver_nostatic',
 ]
