@@ -1,20 +1,27 @@
 {% extends "base.html" %}
-
 {% load static %}
-
 {% block content %}
-<h2>{{ user.username }}</h2>
-<ul>
-    {% if profile.profile_photo %}
-    <p><img src="{{ profile.profile_photo.url }}"></p>
-    {% else %}
-    <p>This profile has no photo</p>
-    {% endif %}
-    <p>{{ user.first_name }}</p>
-    {% if user.username == user.username %}
-    <p>{{ user.last_name }}</p>
-    <p>{{ user.email }}</p>
-    {% endif %}
-</ul>
 
+<h2>{{ user.username }}</h2>
+<div class="detail-container row">
+    <div class="col-lg-6 text-center" style="margin-top: 20px;">
+        <p>First name: {{ user.first_name }}</p>
+        {% if user.username == user.username %}
+        <p>Last name:{{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        {% endif %}
+    </div>
+    <div class="col-lg-6">
+        {% if user__profile.profile_photo %}
+        <p><img src="{{ profile.profile_photo.url }}" width="100%"></p>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
+
+
+
+<!-- <form action="{% url 'eventfinder:attending' event.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="RSVP">
+    </form> -->

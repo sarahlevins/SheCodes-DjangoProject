@@ -10,7 +10,7 @@
         Venue:
         <a href="{% url 'eventfinder:venue-detail' event.venue.pk %}">{{ event.venue }}</a>
       </p>
-      <p>Host: {{ event.host }}</p>
+      <p>Host: <a href="{% url 'users:profile' event.host.pk %}">{{ event.host }}</a></p>
       <p>Categories:
         <br />{% for category in event.category.all %}
         {{ category.name }}, {% endfor %}</p>

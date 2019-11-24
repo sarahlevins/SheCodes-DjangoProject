@@ -24,6 +24,7 @@
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Hi {{ user.username }}</a>
         <div class="dropdown-menu" aria-labelledby="dropdown">
+          <a class="dropdown-item nav-item" href="{% url 'users:profile' request.user.pk %}">My Profile</a>
           <a class="dropdown-item nav-item" href="{% url 'users:update_profile' %}">My Account</a>
           <a class="dropdown-item nav-item" href="{% url 'users:logout' %}">Logout</a>
         </div>

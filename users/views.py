@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.views.generic.base import TemplateView
 from users.forms import CustomUserCreationForm, ProfileForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
+from django.views.generic.edit import UpdateView
 
 
 def register(request):
@@ -26,6 +28,11 @@ def register(request):
 
 class RegisterSuccessView(TemplateView):
     template_name = "registration/register_success.html"
+
+
+class ProfileView(DetailView):
+    model = User
+    template_name = 'profile.html'
 
 
 @login_required
