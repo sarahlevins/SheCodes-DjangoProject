@@ -18,7 +18,7 @@ SECRET_KEY = 'gg*72^keeksus6jmmn%ph$4@wb-*%wkr(+-#oiw(r^)8(cb$$r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
-                 'morning-headland-11937.herokuapp.com']
+                 'eventtwo.herokuapp.com']
 if 'BEANSTALK_HOST' in os.environ:
     ALLOWED_HOSTS.append(os.environ['BEANSTALK_HOST'])
     try:
@@ -94,6 +94,7 @@ DATABASES = {
 }
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
+
 # Use environment settings for database
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
@@ -136,21 +137,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+if 'S3_BUCKET' in os.environ:
+    # setup AWS S3 as the storage for static and media
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # define the AWS S3 bucket to use for storage
+    AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
+    AWS_DEFAULT_ACL = 'public-read'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
-# if 'S3_BUCKET' in os.environ:
-#     # setup AWS S3 as the storage for static and media
-#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#     # define the AWS S3 bucket to use for storage
-#     AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
-#     AWS_DEFAULT_ACL = 'public-read'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ]
 }
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
